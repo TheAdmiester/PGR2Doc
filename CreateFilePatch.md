@@ -8,7 +8,7 @@ In default.xbe in IDA, at offset `0x18F081` (`0x17F081` in the XBE file), the or
 A jump instruction is usually 5 bytes - 1 for the instruction itself, and 4 for the address offset to jump to - so in this image, I'm picking the `push edi` as my starting point:\
 ![image](https://github.com/AJB-Tech/PGR2Doc/assets/12451453/42bc7e8f-3744-4607-acb8-e010b0c33683)\
 \
-I replace the `57 8D 56 F4 50` with my own jump. I identified a space at `0x28BAA4` (XBE offset `0x278824`) that looks unused and large enough to add some new code, so I used IDA's Assemble function (Edit->Patch Program->Assemble), typing `jmp 28BAA4`, and it handily calculates the offset for me:\
+I replace the `57 8D 45 F4 50` with my own jump. I identified a space at `0x28BAA4` (XBE offset `0x278824`) that looks unused and large enough to add some new code, so I used IDA's Assemble function (Edit->Patch Program->Assemble), typing `jmp 28BAA4`, and it handily calculates the offset for me:\
 ![image](https://github.com/AJB-Tech/PGR2Doc/assets/12451453/638cde4e-4a43-44ba-9f81-46ae1218443a)
 
 ## 2: Adding our new code
