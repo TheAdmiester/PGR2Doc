@@ -3,7 +3,7 @@ Project Gotham Racing 2, and presumably most Xbox games, utilise fairly standard
 \
 In my case, I wanted to pipe every file request through OutputDebugString such that when I monitor my Xbox through XBDM, I can see what it's accessing whenever I load a race or click on a certain menu. Finding out how to do this wasn't easy for a beginner, but in case it's useful (and possibly applicable to other Xbox games), I'm documenting it here.\
 \
-In default.xbe in IDA, at offset `0x18F081` (`0x17F081` in the XBE file), the original code has just finished moving the address what I'll refer to as filePath into the EDI register, and is about to push it and some other information from EAX so that it can call RtlInitAnsiString. I figured this was a good place to hijack the original code, so I did the following:
+In default.xbe in IDA, at offset `0x18F081` (`0x17F081` in the XBE file), the original code has just finished moving the address for what I'll refer to as filePath into the EDI register, and is about to push it and some other information from EAX so that it can call RtlInitAnsiString. I figured this was a good place to hijack the original code, so I did the following:
 ## 1: Identify the bytes to replace with a jump
 A jump instruction is usually 5 bytes - 1 for the instruction itself, and 4 for the address offset to jump to - so in this image, I'm picking the `push edi` as my starting point:\
 ![image](https://github.com/AJB-Tech/PGR2Doc/assets/12451453/42bc7e8f-3744-4607-acb8-e010b0c33683)\
